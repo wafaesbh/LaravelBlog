@@ -18,11 +18,10 @@ class CreatePostsTable extends Migration
             $table->string('slug');
             $table->string('title');
             $table->string('content');
-            $table->boolean('published');
+            $table->boolean('published')->default(0);
             $table->string('image');
             $table->foreignId('admin_id')->constrained('admin')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->rememberToken();
             $table->timestamps();
         });
     }
