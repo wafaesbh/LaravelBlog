@@ -20,10 +20,8 @@ class CreatePostsTable extends Migration
             $table->string('content');
             $table->boolean('published');
             $table->string('image');
-            $table->unsignedBigInteger('admin_id');
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('admin_id')->references('id')->on('admin');
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreignId('admin_id')->constrained('admin')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->rememberToken();
             $table->timestamps();
         });
